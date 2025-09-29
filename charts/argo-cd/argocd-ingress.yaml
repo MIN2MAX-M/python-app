@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    meta.helm.sh/release-name: argocd
+    meta.helm.sh/release-namespace: argocd
+  creationTimestamp: "2025-09-29T19:08:55Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: argocd-server
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/version: v3.1.7
+    helm.sh/chart: argo-cd-8.5.7
+  name: argocd-server
+  namespace: argocd
+  resourceVersion: "631591"
+  uid: d31eeb39-cc91-4e60-8323-cd4a28b4c177
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: argocd.test.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: argocd-server
+            port:
+              number: 443
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - argocd.test.com
+    secretName: argocd-server-tls
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost
