@@ -2,8 +2,6 @@ name: ci
 
 on:
   push:
-    paths:
-      - src/**
     branches:
       - main
 
@@ -23,3 +21,4 @@ jobs:
         with:
           push: true
           tags: emmytech05/python-app:${GITHUB_SHA::6}
+
