@@ -20,5 +20,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: "emmytech05/python-app:v1-${{ github.sha }}-${{ github.run_number }}"
+          tags: emmytech05/python-app:${{ github.sha::6 }}
 
