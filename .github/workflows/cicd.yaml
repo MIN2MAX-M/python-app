@@ -36,23 +36,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Argo CD CLI
+   CD:
+    needs: CI
+    runs-on: self-hosted
+    steps:
+      - name: Install ArgoCD CLI (arm64 for self-hosted runner)
         run: |
-          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-arm64
           chmod +x argocd
-          mkdir -p $HOME/.local/bin
-          mv argocd $HOME/.local/bin/
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          sudo mv argocd /usr/local/bin/
 
-
-      - name: Login and sync Argo CD app
-        env:
-          ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
+      - name: Login and Sync App
         run: |
           argocd login argocd-server.argocd \
             --insecure \
             --grpc-web \
             --username admin \
-            --password $ARGOCD_PASSWORD
+            --password ${{ secrets.ARGOCD_PASSWORD }}
           argocd app sync python-app
 
