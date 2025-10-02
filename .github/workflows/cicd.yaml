@@ -1,5 +1,3 @@
-name: CI/CD
-
 on:
   push:
     branches:
@@ -36,10 +34,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-   CD:
-    needs: CI
-    runs-on: self-hosted
-    steps:
       - name: Install ArgoCD CLI (arm64 for self-hosted runner)
         run: |
           curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-arm64
