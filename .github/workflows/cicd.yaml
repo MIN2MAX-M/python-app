@@ -44,6 +44,7 @@ jobs:
           mv argocd $HOME/.local/bin/
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
+
       - name: Login and sync Argo CD app
         env:
           ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
