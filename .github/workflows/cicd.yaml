@@ -57,7 +57,7 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: "update values.yaml with commit ${{ needs.CI.outputs.commit_id }}"
-          add: "/charts/python-app/values.yaml"
+          add: "charts/python-app/values.yaml"
 
       - name: Install ArgoCD CLI (arm64)
         shell: bash
