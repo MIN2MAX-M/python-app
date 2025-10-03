@@ -49,8 +49,9 @@ jobs:
       - name: Modify values.yaml with commit ID
         shell: bash
         run: |
-          echo "Updating /charts/python-app/values.yaml with commit ID..."
-          yq -Yi ".image.tag = \"${{ needs.CI.outputs.commit_id }}\"" /charts/python-app/values.yaml
+          echo "Updating charts/python-app/values.yaml with commit ID..."
+          yq -Yi ".image.tag = \"${{ needs.CI.outputs.commit_id }}\"" charts/python-app/values.yaml
+
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
